@@ -34,6 +34,6 @@ std::vector < int > Game::giveLineByNumber( std::vector < int > input,
     for ( int i = startId ; i < endId; i++ ) {
        result.push_back( input.at( i ) );
     }
-    return input;
+    return result;
 }
 
