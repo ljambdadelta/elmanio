@@ -10,11 +10,17 @@ class UI_cli
 public:
     UI_cli();
     UI_cli( std::vector < int > info);
+    UI_cli( const UI_cli& u);
+    UI_cli( Game g );
+
     void draw();
 private:
      std::vector < int > gameinfo;
-     void drawLine();
-     void drawBox();
+     int length;
+     void drawLine( std::vector < int > input );
+     void drawBox( int input );
+     //std::vector < int > giveLineByNumber( std::vector < int > input,
+     //                                                    int Nline, int length);
 };
 
 #endif // UI_CLI_H

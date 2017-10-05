@@ -1,11 +1,12 @@
-#ifndef FIELDBOMB_H
-#define FIELDBOMB_H
+#ifndef BOXBOMB_H
+#define BOXBOMB_H
 
-
-class FieldBomb
+#include "box.h"
+class BoxBomb : Box
 {
 public:
-    FieldBomb();
+    BoxBomb();
+    BoxBomb( const Box& b );
 };
 
-#endif // FIELDBOMB_H
+#endif // BOXBOMB_H
