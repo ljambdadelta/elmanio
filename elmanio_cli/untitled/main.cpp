@@ -22,7 +22,8 @@ int main(int argc, char *argv[])
     ;*/
     Game test( 10, 10 );
     UI_cli  u_test( test );
-    u_test.draw();
+    test.start( u_test );
+    //u_test.draw();
     std::cout << std::endl << std::endl;
 
     return 0;

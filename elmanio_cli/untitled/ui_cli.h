@@ -1,9 +1,10 @@
 #ifndef UI_CLI_H
 #define UI_CLI_H
 
+#include "game.h"
 #include <vector>
 #include <cmath>
-#include "game.h"
+
 
 class UI_cli
 {
@@ -15,6 +16,8 @@ public:
 
     static void debug_showGameinfo( std::vector < int > v);
     void draw();
+    std::vector < std::string > userInput();
+
 private:
      std::vector < int > gameinfo;
      int length;

@@ -53,6 +53,16 @@ void UI_cli::drawBox( int input ) {
     }
 }
 
+std::vector < std::string > UI_cli::userInput() {
+    std::vector < std::string > output;
+    std::string buffer = "";
+    std::cin >> buffer;
+    output.push_back( buffer );
+    std::cin >> buffer;
+    output.push_back( buffer );
+    return output;
+}
+
 void UI_cli::debug_showGameinfo( std::vector < int > v) {
     std::cout << "Start ";
     for (  int i : v )

@@ -48,12 +48,16 @@ public:
 
     bool hasBomb()   { return isBomb; }
     bool hasOpen()   { return isOpen; }
+    bool hasFlag()   { return isFlag; }
+    bool hasAlt()    { return isAlt ; }
 protected:
 
     // fields
             pos     position;
             bool    isBomb;
             bool    isOpen;
+            bool    isFlag;
+            bool    isAlt;
 };
 
 
