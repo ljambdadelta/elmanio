@@ -1,5 +1,5 @@
 #include "game.h"
-
+#include "ui_cli.h"
 /*Game::Game()
 {
 
@@ -8,7 +8,22 @@ Game::Game()    :length{ -1 },
                  Nmines{ -1 }
 {
     field = Field();
+}
 
+Game::Game( int length ) {
+    this->length = length;
+    this->field = Field( this->length );
+}
+
+Game::Game( int length, int number_of_mines ) {
+    this->length = length;
+    this->Nmines = number_of_mines;
+    this->field = Field( this->length, Nmines );
+}
+Game::Game( const Game& g ) {
+    this->length = g.length;
+    this->Nmines = g.Nmines;
+    this->field = g.field;
 }
 
 

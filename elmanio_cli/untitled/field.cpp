@@ -1,15 +1,17 @@
 #include "field.h"
 
+#define UNDEFINED -1
+#define WILL_BE_DEFINED_LATER 0
 
 // Constructors
-Field::Field()
+Field::Field() :length { UNDEFINED }, Nmines { UNDEFINED }, volume { UNDEFINED }
 {
     generate();
     setBombs();
     fieldForOutput = std::vector < int >();
 }
 
-Field::Field( int size) {
+Field::Field( int size) :Nmines { WILL_BE_DEFINED_LATER } {
     generate( size );
     setBombs();
     fieldForOutput = std::vector < int >();
@@ -25,21 +27,23 @@ Field::Field( const Field& f) {
     this->field = f.field;
     this->length = f.length;
     this->Nmines = f.Nmines;
-    fieldForOutput = f.fieldForOutput;
+    this->fieldForOutput = f.fieldForOutput;
 }
 
 // Restart
 void Field::clear() {
     field.clear();
     fieldForOutput.clear();
-    length = -1;
-    Nmines = -1;
-    volume = -1;
+    length = UNDEFINED;
+    Nmines = UNDEFINED;
+    volume = UNDEFINED;
 }
 
 // Start
 void Field::generate() {
-    generate( DEFAULT_LENGTH );
+    if ( length != UNDEFINED )
+        generate( DEFAULT_LENGTH );
+    return;
 }
 
 void Field::generate( int size ) {
@@ -53,13 +57,15 @@ void Field::generate( int size ) {
 }
 
 void Field::setBombs() {
-    setBombs( DEFAULT_LEVEL_OF_SIMPLICITY );
+    if ( Nmines != UNDEFINED )
+        setBombs( DEFAULT_LEVEL_OF_SIMPLICITY );
+    return;
 }
 
 void Field::setBombs( int mines ) {
     Nmines = mines;
     for( int cMineId = 0; cMineId < Nmines; cMineId++ ) {
-        int randId = rand() % ( length*length - 1) ;
+        int randId = rand() % ( length*length - 1 ) ;
         field.at( randId ).setBombHere();
     }
 }
@@ -85,6 +91,7 @@ int Field::getNmines() {
 }
 
 std::vector < int > Field::getField() {
+    convertFieldForOutput();
     return fieldForOutput;
 }
 

@@ -13,6 +13,7 @@ public:
     UI_cli( const UI_cli& u);
     UI_cli( Game g );
 
+    static void debug_showGameinfo( std::vector < int > v);
     void draw();
 private:
      std::vector < int > gameinfo;

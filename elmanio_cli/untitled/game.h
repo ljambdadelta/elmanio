@@ -10,6 +10,9 @@ class Game
 public:
 
     Game();
+    Game( int length );
+    Game( int length, int number_of_mines );
+    Game( const Game& g );
     static std::vector < int > giveLineByNumber( std::vector < int > input,
                                                     int Nline, int length);
     std::vector < int > getField();
