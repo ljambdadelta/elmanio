@@ -104,7 +104,10 @@ void Field::setVolume( int v ) {
 }
 
 bool Field::open( Box::pos id) {
-    if ( field.at( ( id.y * length ) + id.x ).hasOpen() ) {
-        //Game::
+    int idInArray = ( id.y * length ) + id.x ;
+    if ( field.at( idInArray ).hasOpen() ) {
+        return field[ idInArray ].hasBomb();
     }
+    field[ idInArray ].setOpen( true );
+    return field[ idInArray ].hasBomb();
 }

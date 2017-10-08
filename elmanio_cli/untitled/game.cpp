@@ -5,7 +5,8 @@
 
 }*/
 Game::Game()    :length{ -1 },
-                 Nmines{ -1 }
+                 Nmines{ -1 },
+                 idOfCurrentBox { -1 }
 {
     field = Field();
 }
@@ -13,28 +14,35 @@ Game::Game()    :length{ -1 },
 Game::Game( int length ) {
     this->length = length;
     this->field = Field( this->length );
+    this->idOfCurrentBox = -1;
 }
 
 Game::Game( int length, int number_of_mines ) {
     this->length = length;
     this->Nmines = number_of_mines;
     this->field = Field( this->length, Nmines );
+    this->idOfCurrentBox = -1;
 }
 Game::Game( const Game& g ) {
     this->length = g.length;
     this->Nmines = g.Nmines;
     this->field = g.field;
+    this->idOfCurrentBox = -1;
 }
 
 /* output interface must have:  void draw() to draw all the boxes
  *                              std::string* userInput() to give info about what's the user choice
 */
 void    Game::processUserInput( std::vector < std::string > data ) {
-    char    command = convertToOneCommandSymbol( data[ 0 ] );
+    char    command = convertToOneCommandSymbol( data[ 0 ] ); // TODO check if user enters good value
     switch ( command ) {
     case 'o':
     case 'O':
-        openBox( data[ 1 ] );
+        bool resultOfOpeningBox = openBox( data[ 1 ] );
+        if ( resultOfOpeningBox )
+            say("endgame"); // end game
+        else
+
         break;
     default:
         break;
@@ -44,18 +52,23 @@ char    Game::convertToOneCommandSymbol( std::string longCommand ) {
     return longCommand.at( 0 );
 }
 
-void    Game::openBox( std::string position ) {
+int convertFromStringToInt( std::string string ) {
     std::stringstream ss;
-    ss << position;
-    int positionInt;
-    ss >> positionInt;
-    Box::pos positionPos = idToPositionTranslator( positionInt );
-
-    std::cout << "say 'Booooom'" << std::endl;
+    ss << string;
+    int integer;
+    ss >> integer;
+    return integer;
 }
 
-void    Game::openBox( Box::pos position ) {
-    //field.
+bool    Game::openBox( std::string position ) {
+    convertFromStringToInt( position );
+    Box::pos positionPos = idToPositionTranslator( positionInt );
+
+    return openBox( positionPos );
+}
+
+bool    Game::openBox( Box::pos position ) {
+    return field.open( position );
 }
 
 Box::pos     Game::idToPositionTranslator( int positionInt ) {

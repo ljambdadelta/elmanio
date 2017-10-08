@@ -24,7 +24,7 @@ public:
     void setBombs( int mines );
 
     void clear();
-    bool open( Box::pos id);
+    Box::Type open( Box::pos id);
     void convertFieldForOutput();
 
     int getVolume();

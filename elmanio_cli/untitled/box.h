@@ -50,6 +50,14 @@ public:
     bool hasOpen()   { return isOpen; }
     bool hasFlag()   { return isFlag; }
     bool hasAlt()    { return isAlt ; }
+
+    void setOpen( bool newState ) {
+        if ( !newState )
+            return; // never should happens
+        isOpen = newState;
+        return ;
+    }
+
 protected:
 
     // fields
