@@ -24,12 +24,13 @@ public:
     void setBombs( int mines );
 
     void clear();
-    Box::Type open( Box::pos id);
+    bool open( int id);
     void convertFieldForOutput();
 
     int getVolume();
     int getNmines();
     std::vector < int > getField();
+    Box    getBoxAt( int index );
 
     void setVolume();
     void setVolume( int v );

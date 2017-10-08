@@ -103,11 +103,14 @@ void Field::setVolume( int v ) {
     volume = v;
 }
 
-bool Field::open( Box::pos id) {
-    int idInArray = ( id.y * length ) + id.x ;
-    if ( field.at( idInArray ).hasOpen() ) {
-        return field[ idInArray ].hasBomb();
+bool Field::open( int id ) {
+    if ( field.at( id ).hasOpen() ) {
+        return field[ id ].hasBomb();
     }
-    field[ idInArray ].setOpen( true );
-    return field[ idInArray ].hasBomb();
+    field[ id ].setOpen( true );
+    return field[ id ].hasBomb();
+}
+
+Box    Field::getBoxAt( int index ) {
+    return field.at( index );
 }

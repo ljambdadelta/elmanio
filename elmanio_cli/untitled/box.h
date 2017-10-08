@@ -36,7 +36,7 @@ public:
 
     // Virtual functions
 
-    virtual std::string getType();
+    std::string getType();
 
     // Basic functions
 
